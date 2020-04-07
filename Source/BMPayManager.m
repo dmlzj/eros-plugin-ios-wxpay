@@ -70,12 +70,15 @@
     payRequest.timeStamp = [payInfo.timestamp intValue];
     payRequest.sign = payInfo.sign;
     
-    if ([WXApi sendReq:payRequest]) {
+//    if ([WXApi sendReq:payRequest]) {
+//        [SVProgressHUD dismiss];
+//        WXLogInfo(@"调用微信成功");
+//    } else {
+//        WXLogError(@"调用微信失败");
+//    }
+    [WXApi sendReq:payRequest completion:^(BOOL success) {
         [SVProgressHUD dismiss];
-        WXLogInfo(@"调用微信成功");
-    } else {
-        WXLogError(@"调用微信失败");
-    }
+    }];
 }
 
 // 微信支付结果回调
